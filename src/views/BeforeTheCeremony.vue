@@ -1,14 +1,18 @@
 <template>
   <div>
-    <h1>Mr and Mrs McCrory</h1>
+    <h1>Before the Ceremony</h1>
     <div class="mrandmrs-container">
       <ul
         class="mrandmrs-list"
-        v-for="mrandmrs in mrandmrsData"
-        v-bind:key="mrandmrs.id"
+        v-for="beforetheceremony in beforetheceremonyData"
+        v-bind:key="beforetheceremony.id"
       >
-        <li class="mrandmrs">
-          <img class="mrandmrs-img" :src="mrandmrs.image_url" alt="" />
+        <li class="beforetheceremony">
+          <img
+            class="beforetheceremony-img"
+            :src="beforetheceremony.image_url"
+            alt=""
+          />
         </li>
       </ul>
     </div>
@@ -19,20 +23,21 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'MrAndMrs',
+  name: 'BeforeTheCeremony',
   data() {
     return {
-      mrandmrsURL: 'https://two-less-fish-in-the-sea.herokuapp.com/mrandmrs',
-      mrandmrsData: []
+      beforetheceremonyURL:
+        'https://two-less-fish-in-the-sea.herokuapp.com/beforetheceremony',
+      beforetheceremonyData: []
     }
   },
   mounted() {
     axios
-      .get(this.mrandmrsURL)
+      .get(this.beforetheceremonyURL)
       .then(console.log('getting data'))
       .then(response => {
-        console.log(response.data.mrandmrs)
-        this.mrandmrsData = response.data.mrandmrs
+        console.log(response.data.beforetheceremony)
+        this.beforetheceremonyData = response.data.beforetheceremony
       })
   }
 }
@@ -48,7 +53,7 @@ ul {
   list-style-type: none;
   display: inline-block;
 }
-.mrandmrs-img {
+.beforetheceremony-img {
   height: 20vw;
   width: auto;
   border-radius: 5%;

@@ -16,7 +16,8 @@
     "pg": "^7.8.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack": "^4.29.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

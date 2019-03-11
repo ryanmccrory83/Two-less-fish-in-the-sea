@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import GettingReadyForTheBigDay from './views/GettingReadyForTheBigDay.vue'
+import BeforeTheCeremony from './views/BeforeTheCeremony.vue'
 import TheCeremony from './views/TheCeremony.vue'
 import MrAndMrs from './views/MrAndMrs.vue'
 import TheReception from './views/TheReception.vue'
@@ -21,6 +22,11 @@ export default new Router({
       component: GettingReadyForTheBigDay
     },
     {
+      path: '/beforetheceremony',
+      name: 'beforetheceremony',
+      component: BeforeTheCeremony
+    },
+    {
       path: '/theceremony',
       name: 'theceremony',
       component: TheCeremony
@@ -38,7 +44,7 @@ export default new Router({
     {
       path: '/tripphotos',
       name: 'tripphotos',
-      component: TripPhotos
+      component: () => import('./views/TripPhotos.vue')
     }
   ]
 })

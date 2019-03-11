@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Upload your trip photos here!</h1>
+    <h1>Upload Your Trip Photos Here!</h1>
     <div>
       <input
         style="display: none"
@@ -8,15 +8,21 @@
         @change="onFileSelected"
         ref="fileInput"
       />
-      <button @click="$refs.fileInput.click()">Choose Image to Upload</button>
-      <button @click="onUpload">Upload</button>
+      <button class="choose-img" @click="$refs.fileInput.click()">
+        Choose Image to Upload
+      </button>
+      <button class="submit-img" @click="onUpload">Upload</button>
     </div>
-    <div>
-      <main>
-        <section>
-          <ul></ul>
-        </section>
-      </main>
+    <div class="tripphotos-container">
+      <ul
+        class="tripphotos-list"
+        v-for="tripphotos in tripphotosData"
+        v-bind:key="tripphotos.id"
+      >
+        <li class="mrandmrs">
+          <img class="mrandmrs-img" :src="tripphotos.image_url" alt="" />
+        </li>
+      </ul>
     </div>
     <footer>&copy; 2019</footer>
   </div>
@@ -28,8 +34,20 @@ export default {
   name: 'TripPhotos',
   data() {
     return {
-      selectedFile: null
+      selectedFile: null,
+      tripphotosURL:
+        'https://two-less-fish-in-the-sea.herokuapp.com/tripphotos',
+      tripphotosData: []
     }
+  },
+  mounted() {
+    axios
+      .get(this.tripphotosURL)
+      .then(console.log('getting data'))
+      .then(response => {
+        console.log(response.data.tripphotos)
+        this.tripphotosData = response.data.tripphotos
+      })
   },
   methods: {
     onFileSelected(event) {
@@ -57,4 +75,28 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+h1 {
+  font-family: 'Great Vibes', cursive;
+  text-shadow: 0.2rem 0.1rem black;
+}
+.choose-img:hover {
+  color: coral;
+  background-color: black;
+}
+.submit-img:hover {
+  color: coral;
+  background-color: black;
+}
+ul {
+  list-style-type: none;
+  display: inline-block;
+}
+.tripphotos-img {
+  height: 20vw;
+  width: auto;
+  border-radius: 5%;
+  box-shadow: 0.2rem 0.2rem coral;
+}
+</style>
